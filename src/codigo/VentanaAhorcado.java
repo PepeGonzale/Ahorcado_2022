@@ -38,6 +38,7 @@ public class VentanaAhorcado extends javax.swing.JFrame {
                 }
             }
             panelGuiones.setText(palabraConGuiones);
+            //Si la palabra no contiene ningun _ aparecera la imagen de que has ganado la partida.
             if(!palabraConGuiones.contains("_")){
                 numeroFallos=-10;
                 dibujaImagen();
@@ -46,8 +47,8 @@ public class VentanaAhorcado extends javax.swing.JFrame {
                 
             
         }
-        //si no contiene la letra, aumenta el numero de fallos y
-        //también cambia a la siguiente imagen.
+        //si has elegido la letra equivocada aumentara el numero de fallos
+        //y pondra la imagen correspondiente.
         else{
             numeroFallos++;
             if(numeroFallos == 6){
@@ -57,15 +58,15 @@ public class VentanaAhorcado extends javax.swing.JFrame {
         }
     }
     
-
+        //metodo chequeaBoton, si has pulsado el boton se desactiva.
        public void chequeaBoton(JButton miBoton){
            if(!partidaAcabada){
         miBoton.setEnabled(false);
         chequeaLetra(miBoton.getText());
     }
        }
+       //todas las imagenes que vamos a utilizar estan aqui.
          private void dibujaImagen (){
-             
         URL nombreImagen = null;
         switch (numeroFallos){
             case -10: nombreImagen = getClass().getResource("/imagenes/win.jpg"); break;
@@ -78,7 +79,7 @@ public class VentanaAhorcado extends javax.swing.JFrame {
             default : nombreImagen = getClass().getResource("/imagenes/gameover.jpg"); break;
         }
         
-        //cargar la imagen correspondiente en el jLabel del imagenahorcado
+        //cargar la imagen correspondiente en el jLabel.
         ImageIcon miImagen = new ImageIcon(
         new ImageIcon(nombreImagen).getImage()
                 .getScaledInstance(
